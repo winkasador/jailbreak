@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxuddwew33hmi"]
+[gd_scene load_steps=4 format=3 uid="uid://dxuddwew33hmi"]
 
 [ext_resource type="Texture2D" uid="uid://brcfml5xj4w5s" path="res://icon.svg" id="1_8g2pp"]
+[ext_resource type="Script" path="res://game/game_manager.gd" id="1_g2krw"]
 [ext_resource type="PackedScene" uid="uid://d244soh2hsknn" path="res://character/player/player.tscn" id="2_6g05l"]
 
 [node name="Game" type="Node"]
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("1_g2krw")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(67, 71)

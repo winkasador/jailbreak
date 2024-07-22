@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://waks8gcvqa76"]
+
+[ext_resource type="Texture2D" uid="uid://q7sv0d217aui" path="res://character/sprites/inmate_0.png" id="1_4n8er"]
+[ext_resource type="Shader" path="res://shaders/teleportation_burn_mark.gdshader" id="1_7nvn2"]
+[ext_resource type="Script" path="res://character/player/player_teleportation_effect.gd" id="1_ovmi7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rqidb"]
+shader = ExtResource("1_7nvn2")
+shader_parameter/color = Color(0.0431373, 0.0392157, 0.00784314, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmnlu"]
+atlas = ExtResource("1_4n8er")
+region = Rect2(0, 0, 16, 16)
+
+[node name="PlayerTeleportationEffect" type="Sprite2D"]
+z_index = -1
+material = SubResource("ShaderMaterial_rqidb")
+texture = SubResource("AtlasTexture_dmnlu")
+script = ExtResource("1_ovmi7")
