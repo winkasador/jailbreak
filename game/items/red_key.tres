@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://doao4s4hh408f"]
+
+[ext_resource type="Script" uid="uid://m300qob3ckk1" path="res://game/items/scripts/item.gd" id="1_bl7kg"]
+[ext_resource type="Texture2D" uid="uid://cm0jqh482s60u" path="res://game/items/sprites/atlas.png" id="2_j7app"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bir5t"]
+atlas = ExtResource("2_j7app")
+region = Rect2(16, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_bl7kg")
+id = "red_key"
+texture = SubResource("AtlasTexture_bir5t")
+metadata/_custom_type_script = "uid://m300qob3ckk1"

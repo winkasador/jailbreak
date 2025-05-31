@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://2siiyhqrfgsi"]
+
+[ext_resource type="Script" uid="uid://cusybpiijgbkw" path="res://startup/load_manager.gd" id="1_gmnvj"]
+[ext_resource type="FontFile" uid="uid://8x3pwudrd3pl" path="res://fonts/escapists.ttf" id="2_akpnc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6183s"]
+font = ExtResource("2_akpnc")
+outline_size = 2
+outline_color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="Preload" type="Node2D"]
+
+[node name="LoadManager" type="Node2D" parent="."]
+script = ExtResource("1_gmnvj")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MissingInstallErrorMessage" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -26.5
+offset_right = 98.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Could not find a valid install of the Escapists.
+
+This app requires the Escapists in order to work.
+Please install it from Steam in order to continue."
+label_settings = SubResource("LabelSettings_6183s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CorruptInstallErrorMessage" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -26.5
+offset_right = 98.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your installation of the Escapists seems to be corrupt.
+
+Try reinstalling, and make sure you have
+ the most recent version downloaded."
+label_settings = SubResource("LabelSettings_6183s")
+horizontal_alignment = 1
+vertical_alignment = 1

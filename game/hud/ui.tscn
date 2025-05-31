@@ -1,0 +1,295 @@
+[gd_scene load_steps=26 format=3 uid="uid://dpusi81k24lep"]
+
+[ext_resource type="Script" uid="uid://wnoljm84poej" path="res://game/hud/scripts/ui_manager.gd" id="1_ub3fg"]
+[ext_resource type="Texture2D" uid="uid://cjflbdw8q1ct4" path="res://game/hud/sprites/hud.png" id="2_pi8wq"]
+[ext_resource type="PackedScene" uid="uid://fkti8auevlvo" path="res://game/inventory/player_inventory.tscn" id="3_ptg2b"]
+[ext_resource type="Texture2D" uid="uid://bwawrfl436wis" path="res://game/hud/sprites/sidebar/profile_normal.png" id="4_lrv7u"]
+[ext_resource type="Texture2D" uid="uid://cxkw8y7dfh0q3" path="res://game/hud/sprites/sidebar/profile_hover.png" id="5_w0h14"]
+[ext_resource type="Texture2D" uid="uid://pgni4yghicee" path="res://game/hud/sprites/sidebar/journal_normal.png" id="6_138vt"]
+[ext_resource type="Texture2D" uid="uid://svtffu1boxeb" path="res://game/hud/sprites/sidebar/journal_hover.png" id="7_5vr6d"]
+[ext_resource type="Texture2D" uid="uid://d0nggh0mro0mp" path="res://game/hud/sprites/sidebar/crafting_normal.png" id="8_66rti"]
+[ext_resource type="Texture2D" uid="uid://dfbgqqkxijtmb" path="res://game/hud/sprites/sidebar/crafting_hover.png" id="9_4xlag"]
+[ext_resource type="Texture2D" uid="uid://kli8mkqjphq4" path="res://game/hud/sprites/sidebar/load_normal.png" id="10_dai14"]
+[ext_resource type="Texture2D" uid="uid://cusflwss1fohp" path="res://game/hud/sprites/sidebar/load_hover.png" id="11_vw6i6"]
+[ext_resource type="Texture2D" uid="uid://hnpe5ua37rkn" path="res://game/hud/sprites/sidebar/load_disabled.png" id="12_3xkom"]
+[ext_resource type="FontFile" uid="uid://8x3pwudrd3pl" path="res://fonts/escapists.ttf" id="13_bdmbr"]
+[ext_resource type="Shader" uid="uid://ccosk48uuihpm" path="res://shaders/postprocess/blur.gdshader" id="14_ujhj3"]
+[ext_resource type="Texture2D" uid="uid://b4r7x73mch68f" path="res://icon.svg" id="15_6rt4g"]
+[ext_resource type="Texture2D" uid="uid://bqnlvanp24jfj" path="res://interface/ninepatches/info_normal.png" id="16_odwpx"]
+[ext_resource type="Script" uid="uid://dhyjc50ypcaqa" path="res://game/hud/scripts/info_bubble.gd" id="17_pi8wq"]
+[ext_resource type="Texture2D" uid="uid://w15lds81cv23" path="res://interface/ninepatches/panel.png" id="17_yoa4r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bhx41"]
+
+[sub_resource type="Theme" id="Theme_e1j6l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ca42v"]
+font = ExtResource("13_bdmbr")
+font_color = Color(0.733333, 0.733333, 0.733333, 1)
+outline_size = 2
+outline_color = Color(0.121569, 0.121569, 0.121569, 1)
+shadow_size = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qnb83"]
+shader = ExtResource("14_ujhj3")
+shader_parameter/lod = 0.0
+shader_parameter/burn = false
+shader_parameter/brightness = 0.357
+
+[sub_resource type="LabelSettings" id="LabelSettings_rysoc"]
+font = ExtResource("13_bdmbr")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5newe"]
+font = ExtResource("13_bdmbr")
+font_color = Color(0.956765, 0.545221, 3.85046e-07, 1)
+outline_color = Color(0.099986, 0.099986, 0.099986, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_37s47"]
+font = ExtResource("13_bdmbr")
+font_color = Color(0.41, 0.41, 0.41, 1)
+outline_color = Color(0.099986, 0.099986, 0.099986, 1)
+
+[node name="UIManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ub3fg")
+
+[node name="UIBase" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_bhx41")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+texture = ExtResource("2_pi8wq")
+
+[node name="Sidebar" type="Control" parent="UIBase"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PlayerInventory" parent="UIBase/Sidebar" instance=ExtResource("3_ptg2b")]
+layout_mode = 1
+offset_bottom = 0.0
+
+[node name="ProfileButton" type="TextureButton" parent="UIBase/Sidebar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -92.0
+offset_right = 11.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_e1j6l")
+texture_normal = ExtResource("4_lrv7u")
+texture_hover = ExtResource("5_w0h14")
+
+[node name="JournalButton" type="TextureButton" parent="UIBase/Sidebar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -69.0
+offset_right = 11.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("6_138vt")
+texture_hover = ExtResource("7_5vr6d")
+
+[node name="CraftButton" type="TextureButton" parent="UIBase/Sidebar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -46.0
+offset_right = 11.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("8_66rti")
+texture_hover = ExtResource("9_4xlag")
+
+[node name="LoadButton" type="TextureButton" parent="UIBase/Sidebar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -23.0
+offset_right = 11.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+disabled = true
+texture_normal = ExtResource("10_dai14")
+texture_hover = ExtResource("11_vw6i6")
+texture_disabled = ExtResource("12_3xkom")
+
+[node name="Infobar" type="Control" parent="UIBase"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+offset_right = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UIBase/Infobar"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 111.0
+offset_bottom = 14.0
+text = "07:52 - Lights Out (Day 1)"
+label_settings = SubResource("LabelSettings_ca42v")
+
+[node name="Control" type="Control" parent="UIBase"]
+anchors_preset = 0
+offset_right = 296.0
+offset_bottom = 223.0
+
+[node name="TextureRect" type="TextureRect" parent="UIBase/Control"]
+visible = false
+modulate = Color(0.187176, 0.187176, 0.187176, 1)
+self_modulate = Color(0.169245, 0.169245, 0.169245, 1)
+material = SubResource("ShaderMaterial_qnb83")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_6rt4g")
+
+[node name="InfoBubble" type="NinePatchRect" parent="UIBase/Control"]
+visible = false
+modulate = Color(1, 1, 1, 0.847059)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -74.0
+offset_top = -19.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 0
+texture = ExtResource("16_odwpx")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+script = ExtResource("17_pi8wq")
+
+[node name="InfoBubbleLabel" type="Label" parent="UIBase/Control/InfoBubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+text = "The Escapists"
+label_settings = SubResource("LabelSettings_rysoc")
+
+[node name="ProfilePopup" type="NinePatchRect" parent="UIBase/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -47.0
+offset_right = 75.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_yoa4r")
+region_rect = Rect2(0, 0, 12, 12)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="UIBase/Control/ProfilePopup"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 3.5
+offset_right = 20.0
+offset_bottom = 16.5
+grow_horizontal = 2
+text = "Yungblud"
+label_settings = SubResource("LabelSettings_5newe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UIBase/Control/ProfilePopup"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 13.5
+offset_right = 20.0
+offset_bottom = 26.5
+grow_horizontal = 2
+text = "(janitor)"
+label_settings = SubResource("LabelSettings_37s47")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="UIBase/Control/ProfilePopup"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -20.5
+offset_right = 33.0
+offset_bottom = -7.5
+grow_vertical = 2
+text = "Crime: "
+label_settings = SubResource("LabelSettings_37s47")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="UIBase/Control/InfoBubble" to="UIBase/Control/InfoBubble" method="_on_gui_input"]

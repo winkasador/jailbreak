@@ -1,0 +1,138 @@
+[gd_scene load_steps=18 format=3 uid="uid://cqbum6v4pxb5n"]
+
+[ext_resource type="Texture2D" uid="uid://ngupvc3qimww" path="res://game/inventory/sprites/slot.png" id="1_32yy5"]
+[ext_resource type="Script" uid="uid://d1jmwu8t3wsqf" path="res://game/inventory/scripts/item_slot.gd" id="1_uetg6"]
+[ext_resource type="Texture2D" uid="uid://bd0eswsns2uto" path="res://game/inventory/sprites/slot_numbers.png" id="3_cci86"]
+[ext_resource type="Texture2D" uid="uid://bmnnrclnbjgsg" path="res://game/inventory/sprites/highlight_low.png" id="4_2xwh8"]
+[ext_resource type="Texture2D" uid="uid://c8x5cb56jmjjk" path="res://game/inventory/sprites/highlight_high.png" id="5_xtiqa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7beo3"]
+atlas = ExtResource("3_cci86")
+region = Rect2(0, 0, 3, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wiccl"]
+atlas = ExtResource("3_cci86")
+region = Rect2(4, 0, 3, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fatmd"]
+atlas = ExtResource("3_cci86")
+region = Rect2(8, 0, 3, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p315"]
+atlas = ExtResource("3_cci86")
+region = Rect2(12, 0, 3, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqywj"]
+atlas = ExtResource("3_cci86")
+region = Rect2(16, 0, 3, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fykq"]
+atlas = ExtResource("3_cci86")
+region = Rect2(20, 0, 3, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xyv5"]
+atlas = ExtResource("3_cci86")
+region = Rect2(24, 0, 3, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l77ab"]
+atlas = ExtResource("3_cci86")
+region = Rect2(28, 0, 3, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3amu8"]
+atlas = ExtResource("3_cci86")
+region = Rect2(32, 0, 3, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbixm"]
+atlas = ExtResource("3_cci86")
+region = Rect2(36, 0, 3, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3tulb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7beo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wiccl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fatmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0p315")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqywj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fykq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xyv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l77ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3amu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbixm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ebc7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2xwh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xtiqa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="ItemSlot" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -938.0
+offset_bottom = -698.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("1_32yy5")
+script = ExtResource("1_uetg6")
+
+[node name="SlotDigit" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(3.5, 4)
+sprite_frames = SubResource("SpriteFrames_3tulb")
+
+[node name="SelectionHighlightSprites" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(11, 11)
+sprite_frames = SubResource("SpriteFrames_7ebc7")
+frame_progress = 0.595713
+
+[node name="HeldItemTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
