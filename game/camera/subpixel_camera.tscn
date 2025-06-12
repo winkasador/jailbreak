@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0gujynt3drfl"]
+
+[ext_resource type="Script" uid="uid://dmnkbuie2lr76" path="res://game/camera/subpixel_camera.gd" id="1_ru1u0"]
+
+[node name="Camera2D" type="Camera2D" node_paths=PackedStringArray("follow_target")]
+offset = Vector2(12, 8)
+limit_left = 0
+limit_top = 0
+script = ExtResource("1_ru1u0")
+follow_target = NodePath("")
+smoothing_rate = 6.0

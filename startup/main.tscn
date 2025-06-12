@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cohl4xoebjoj5"]
+[gd_scene load_steps=8 format=3 uid="uid://cohl4xoebjoj5"]
 
 [ext_resource type="Shader" uid="uid://c3m3p4qliyhx1" path="res://shaders/subpixel_offset.gdshader" id="1_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://nu72yyd538ex" path="res://game/game.tscn" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://casup6domk45b" path="res://startup/fullscreen_manager.gd" id="1_2oib4"]
+[ext_resource type="Script" uid="uid://fufunp8oljff" path="res://startup/resolution_manager.gd" id="1_fb1jb"]
+[ext_resource type="PackedScene" uid="uid://nu72yyd538ex" path="res://game/game.tscn" id="4_2oib4"]
+[ext_resource type="Script" uid="uid://duuhe3yo1vdiq" path="res://game/interaction/input_detector.gd" id="4_ax2kv"]
 [ext_resource type="PackedScene" uid="uid://dpusi81k24lep" path="res://game/hud/ui.tscn" id="4_tefeu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
@@ -11,33 +14,48 @@ shader_parameter/camera_offset = Vector2(0, 0)
 [node name="Main" type="Node2D"]
 texture_filter = 1
 
-[node name="SubpixelGameContainer" type="SubViewportContainer" parent="."]
+[node name="FullscreenManager" type="Node" parent="."]
+script = ExtResource("1_2oib4")
+
+[node name="ResolutionManager" type="Node" parent="."]
+script = ExtResource("1_fb1jb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubpixelGameContainer" type="SubViewportContainer" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_sugp2")
 offset_left = -2.0
 offset_top = -2.0
 offset_right = 320.0
 offset_bottom = 240.0
-scale = Vector2(3, 3)
+mouse_filter = 2
 
-[node name="SubViewport" type="SubViewport" parent="SubpixelGameContainer"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubpixelGameContainer"]
 handle_input_locally = false
 size = Vector2i(322, 242)
 render_target_update_mode = 4
 
-[node name="Game" parent="SubpixelGameContainer/SubViewport" instance=ExtResource("3_tbgi4")]
+[node name="Game" parent="CanvasLayer/SubpixelGameContainer/SubViewport" instance=ExtResource("4_2oib4")]
 
-[node name="SubpixelUserInterfaceContainer" type="SubViewportContainer" parent="."]
+[node name="SubpixelUserInterfaceContainer" type="SubViewportContainer" parent="CanvasLayer"]
 texture_filter = 1
-offset_right = 322.0
-offset_bottom = 242.0
-scale = Vector2(3, 3)
+offset_right = 320.0
+offset_bottom = 240.0
 
-[node name="SubViewport" type="SubViewport" parent="SubpixelUserInterfaceContainer"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubpixelUserInterfaceContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(322, 242)
+size = Vector2i(320, 240)
 render_target_update_mode = 4
 
-[node name="UIManager" parent="SubpixelUserInterfaceContainer/SubViewport" instance=ExtResource("4_tefeu")]
-offset_right = -2.0
-offset_bottom = -2.0
+[node name="UIManager" parent="CanvasLayer/SubpixelUserInterfaceContainer/SubViewport" instance=ExtResource("4_tefeu")]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_ax2kv")

@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://doao4s4hh408f" path="res://game/items/red_key.tres" id="2_f38jm"]
 [ext_resource type="Texture2D" uid="uid://cm0jqh482s60u" path="res://game/items/sprites/atlas.png" id="3_3etnt"]
 [ext_resource type="Script" uid="uid://cjmgr8fwnwus5" path="res://game/items/scripts/dropped_item_pickup_component.gd" id="5_32c4e"]
-[ext_resource type="Script" uid="uid://c2vc25n5vjpol" path="res://game/interaction/interaction_component.gd" id="5_r0py6"]
+[ext_resource type="Script" uid="uid://c2vc25n5vjpol" path="res://game/interaction/interaction_component.gd" id="6_r0py6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bir5t"]
 atlas = ExtResource("3_3etnt")
@@ -27,8 +27,4 @@ offset_left = -8.0
 offset_top = -8.0
 offset_right = 8.0
 offset_bottom = 8.0
-mouse_default_cursor_shape = 8
-script = ExtResource("5_r0py6")
-hover_message = "Yes :)"
-
-[connection signal="on_interact" from="InteractionComponent" to="DroppedItemPickupComponent" method="_on_interaction_component_on_interact"]
+script = ExtResource("6_r0py6")

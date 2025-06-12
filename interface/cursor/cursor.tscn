@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx6hnnp27fm1"]
+
+[ext_resource type="Texture2D" uid="uid://bqxxjjird7mt" path="res://interface/cursor/sprites/default.png" id="1_73w3g"]
+[ext_resource type="Script" uid="uid://c1t2ub8eexh1t" path="res://game/hud/scripts/cursor.gd" id="2_eg5ip"]
+
+[node name="Cursor" type="Sprite2D"]
+z_index = 4096
+texture_filter = 1
+texture = ExtResource("1_73w3g")
+script = ExtResource("2_eg5ip")
+use_custom_cursor = true

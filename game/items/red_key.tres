@@ -11,4 +11,5 @@ region = Rect2(16, 0, 16, 16)
 script = ExtResource("1_bl7kg")
 id = "red_key"
 texture = SubResource("AtlasTexture_bir5t")
+contraband_level = 2
 metadata/_custom_type_script = "uid://m300qob3ckk1"

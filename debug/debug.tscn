@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc4j5mrsqxu07"]
+
+[ext_resource type="Script" uid="uid://bh2lf0enfogu6" path="res://game/game_manager.gd" id="1_25h3d"]
+[ext_resource type="PackedScene" uid="uid://di8pqbg6l1uh5" path="res://game/entities/player/player.tscn" id="2_25h3d"]
+[ext_resource type="PackedScene" uid="uid://8h7slax5o2we" path="res://game/items/dropped_item.tscn" id="3_25h3d"]
+[ext_resource type="Script" uid="uid://bjapltm2kemfe" path="res://debug/camera_2d.gd" id="3_sm0j5"]
+
+[node name="Debug" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_25h3d")
+player = NodePath("Player")
+
+[node name="Player" parent="." instance=ExtResource("2_25h3d")]
+position = Vector2(16, 17)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2(0.998984, 1.00489)
+script = ExtResource("3_sm0j5")
+
+[node name="DroppedItem" parent="." instance=ExtResource("3_25h3d")]
+position = Vector2(67, 74)
+
+[node name="DroppedItem2" parent="." instance=ExtResource("3_25h3d")]
+position = Vector2(88, 66)

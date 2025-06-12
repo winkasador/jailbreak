@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cs21vyiyr5aq" path="res://game/entities/player/player.gd" id="1_gdab3"]
 [ext_resource type="Texture2D" uid="uid://coxt24stlmoeh" path="res://game/entities/sprites/inmate_0.png" id="2_gdab3"]
 [ext_resource type="Script" uid="uid://br3c3rd6v43so" path="res://game/hud/scripts/destination_arrow.gd" id="3_5dc8e"]
-[ext_resource type="Texture2D" uid="uid://5gsngbc5l6o0" path="res://game/hud/sprites/direction_arrow.png" id="3_tgyl1"]
 [ext_resource type="Script" uid="uid://dmtxafcc252vs" path="res://game/entities/scripts/player_animation_controller.gd" id="5_ixbpm"]
+[ext_resource type="Script" uid="uid://brtot7u55ggvk" path="res://game/entities/player/player_inventory_component.gd" id="5_oic1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_poj5f"]
 size = Vector2(14, 8)
@@ -235,11 +235,10 @@ parameters/walk/blend_position = Vector2(0.0015949, 1)
 script = ExtResource("3_5dc8e")
 player = NodePath("..")
 
-[node name="Sprite2D" type="Sprite2D" parent="DestinationArrow"]
-position = Vector2(0, -48)
-texture = ExtResource("3_tgyl1")
-
 [node name="PlayerAnimationController" type="Node" parent="." node_paths=PackedStringArray("player", "animation_tree")]
 script = ExtResource("5_ixbpm")
 player = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
+
+[node name="PlayerInventoryComponent" type="Node" parent="."]
+script = ExtResource("5_oic1i")

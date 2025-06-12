@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dpusi81k24lep"]
+[gd_scene load_steps=31 format=3 uid="uid://dpusi81k24lep"]
 
 [ext_resource type="Script" uid="uid://wnoljm84poej" path="res://game/hud/scripts/ui_manager.gd" id="1_ub3fg"]
 [ext_resource type="Texture2D" uid="uid://cjflbdw8q1ct4" path="res://game/hud/sprites/hud.png" id="2_pi8wq"]
@@ -18,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://bqnlvanp24jfj" path="res://interface/ninepatches/info_normal.png" id="16_odwpx"]
 [ext_resource type="Script" uid="uid://dhyjc50ypcaqa" path="res://game/hud/scripts/info_bubble.gd" id="17_pi8wq"]
 [ext_resource type="Texture2D" uid="uid://w15lds81cv23" path="res://interface/ninepatches/panel.png" id="17_yoa4r"]
+[ext_resource type="Script" uid="uid://b4qgkfl7ijrsg" path="res://game/hud/command_entry.gd" id="19_xygje"]
+[ext_resource type="PackedScene" uid="uid://bx6hnnp27fm1" path="res://interface/cursor/cursor.tscn" id="20_b01sy"]
+[ext_resource type="PackedScene" uid="uid://cchva3v2gq68s" path="res://game/hud/tooltip/tooltip.tscn" id="21_xygje"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bhx41"]
 
@@ -32,9 +35,9 @@ shadow_size = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qnb83"]
 shader = ExtResource("14_ujhj3")
-shader_parameter/lod = 0.0
-shader_parameter/burn = false
+shader_parameter/strength = 0.37
 shader_parameter/brightness = 0.357
+shader_parameter/burn = false
 
 [sub_resource type="LabelSettings" id="LabelSettings_rysoc"]
 font = ExtResource("13_bdmbr")
@@ -49,6 +52,11 @@ outline_color = Color(0.099986, 0.099986, 0.099986, 1)
 font = ExtResource("13_bdmbr")
 font_color = Color(0.41, 0.41, 0.41, 1)
 outline_color = Color(0.099986, 0.099986, 0.099986, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4xfl6"]
+
+[sub_resource type="Theme" id="Theme_4xfl6"]
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_4xfl6")
 
 [node name="UIManager" type="Control"]
 layout_mode = 3
@@ -65,6 +73,7 @@ material = SubResource("ShaderMaterial_bhx41")
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 240.0
+mouse_filter = 2
 texture = ExtResource("2_pi8wq")
 
 [node name="Sidebar" type="Control" parent="UIBase"]
@@ -185,6 +194,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("15_6rt4g")
 
 [node name="InfoBubble" type="NinePatchRect" parent="UIBase/Control"]
@@ -222,7 +232,6 @@ offset_right = -4.0
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
 text = "The Escapists"
 label_settings = SubResource("LabelSettings_rysoc")
 
@@ -292,4 +301,42 @@ label_settings = SubResource("LabelSettings_37s47")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="LineEdit" type="LineEdit" parent="UIBase/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -17.0
+offset_right = -6.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_4xfl6")
+placeholder_text = "Type a command..."
+context_menu_enabled = false
+emoji_menu_enabled = false
+flat = true
+caret_blink = true
+script = ExtResource("19_xygje")
+
+[node name="Cursor" parent="UIBase" instance=ExtResource("20_b01sy")]
+centered = false
+
+[node name="Tooltip" parent="UIBase/Cursor" instance=ExtResource("21_xygje")]
+z_index = 1
+z_as_relative = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 2.0
+offset_top = 8.0
+offset_right = 10.0
+offset_bottom = 16.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [connection signal="gui_input" from="UIBase/Control/InfoBubble" to="UIBase/Control/InfoBubble" method="_on_gui_input"]
+[connection signal="text_submitted" from="UIBase/Control/LineEdit" to="UIBase/Control/LineEdit" method="_on_text_submitted"]

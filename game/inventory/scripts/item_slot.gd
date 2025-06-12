@@ -15,14 +15,14 @@ var index: int
 func _process(delta: float) -> void:
 	if item:
 		item_texture.texture = item.texture
-		if is_selected:
-			selection_highlight_sprites.visible = true
-			selection_highlight_sprites.play()
-		else:
-			selection_highlight_sprites.visible = false
-		
 	else:
 		item_texture.texture = null
+		
+	if is_selected:
+		selection_highlight_sprites.visible = true
+		selection_highlight_sprites.play()
+	else:
+		selection_highlight_sprites.visible = false
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
