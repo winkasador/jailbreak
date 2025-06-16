@@ -13,11 +13,6 @@ var is_selected: bool
 var index: int
 
 func _process(delta: float) -> void:
-	if item:
-		item_texture.texture = item.texture
-	else:
-		item_texture.texture = null
-		
 	if is_selected:
 		selection_highlight_sprites.visible = true
 		selection_highlight_sprites.play()
@@ -34,3 +29,10 @@ func _on_gui_input(event: InputEvent) -> void:
 func show_index():
 	number.visible = true
 	number.frame = index + 1
+
+func set_item(item: Item):
+	self.item = item
+	if item:
+		item_texture.texture = item.texture
+	else:
+		item_texture.texture = null

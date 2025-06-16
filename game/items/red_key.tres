@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://m300qob3ckk1" path="res://game/items/scripts/item.gd" id="1_bl7kg"]
 [ext_resource type="Texture2D" uid="uid://cm0jqh482s60u" path="res://game/items/sprites/atlas.png" id="2_j7app"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bir5t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi15q"]
 atlas = ExtResource("2_j7app")
 region = Rect2(16, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_bl7kg")
 id = "red_key"
-texture = SubResource("AtlasTexture_bir5t")
+texture = SubResource("AtlasTexture_wi15q")
 contraband_level = 2
 metadata/_custom_type_script = "uid://m300qob3ckk1"

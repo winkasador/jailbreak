@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://yiqih0rbjfmq"]
+
+[ext_resource type="Texture2D" uid="uid://b3546yudrt6kl" path="res://game/objects/locker/locker.png" id="1_ylbdl"]
+[ext_resource type="Script" uid="uid://c2vc25n5vjpol" path="res://game/interaction/interaction_component.gd" id="2_li0wq"]
+[ext_resource type="Script" uid="uid://dq1iet25rnjjd" path="res://game/objects/components/hideable_object_component.gd" id="3_li0wq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_alhkd"]
+size = Vector2(16, 16)
+
+[node name="Locker" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_alhkd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_ylbdl")
+
+[node name="InteractionComponent" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -24.0
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("2_li0wq")
+hover_message = "Cabinet (hide)"
+metadata/_custom_type_script = "uid://c2vc25n5vjpol"
+
+[node name="HideableObjectComponent" type="Node" parent="."]
+script = ExtResource("3_li0wq")
+
+[connection signal="on_interact" from="InteractionComponent" to="HideableObjectComponent" method="_on_interaction_component_on_interact"]

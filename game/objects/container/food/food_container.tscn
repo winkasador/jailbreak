@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxukvi38t3uth"]
+
+[ext_resource type="Texture2D" uid="uid://b34a54xibvle2" path="res://game/objects/container/food/food_container.png" id="1_jjk8y"]
+[ext_resource type="Script" uid="uid://c2vc25n5vjpol" path="res://game/interaction/interaction_component.gd" id="2_i7ge5"]
+[ext_resource type="Script" uid="uid://du64nbbxuswtb" path="res://game/objects/components/item_source_component.gd" id="3_7el8y"]
+[ext_resource type="Script" uid="uid://m300qob3ckk1" path="res://game/items/scripts/item.gd" id="4_nplqi"]
+[ext_resource type="Resource" uid="uid://br1tkc54tv7r8" path="res://game/items/frozen_food.tres" id="5_jjk8y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1oqk"]
+size = Vector2(16, 32)
+
+[node name="FoodContainer" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g1oqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jjk8y")
+
+[node name="InteractionComponent" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = 16.0
+script = ExtResource("2_i7ge5")
+hover_message = "Freezer"
+metadata/_custom_type_script = "uid://c2vc25n5vjpol"
+
+[node name="ItemSourceComponent" type="Node" parent="." node_paths=PackedStringArray("interaction_component")]
+script = ExtResource("3_7el8y")
+interaction_component = NodePath("../InteractionComponent")
+items = Array[ExtResource("4_nplqi")]([ExtResource("5_jjk8y")])

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://cue3e8xidp4te"]
+
+[ext_resource type="Script" uid="uid://m300qob3ckk1" path="res://game/items/scripts/item.gd" id="1_ddqbq"]
+[ext_resource type="Texture2D" uid="uid://cm0jqh482s60u" path="res://game/items/sprites/atlas.png" id="2_ff8ya"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs5vd"]
+atlas = ExtResource("2_ff8ya")
+region = Rect2(16, 96, 16, 16)
+
+[resource]
+script = ExtResource("1_ddqbq")
+id = "cooked_food"
+texture = SubResource("AtlasTexture_qs5vd")
+contraband_level = 0
+metadata/_custom_type_script = "uid://m300qob3ckk1"

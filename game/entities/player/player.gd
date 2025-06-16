@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 ## px/frame
-@export var move_speed = 3 # Orignal value is possibly 3 (at 45 FPS)
+@export var move_speed = 3 # Orignal value is possibly 2 (at 45 FPS)
 @export var diagonal_move_speed = 2 # Orignal value is possibly 2 (at 45 FPS)
 
 var destination: Node2D

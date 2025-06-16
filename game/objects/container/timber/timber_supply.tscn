@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dylc55phxdfl5"]
+
+[ext_resource type="Texture2D" uid="uid://82ysapn6la0k" path="res://game/objects/container/timber/timber_supply.png" id="1_1kyg2"]
+[ext_resource type="Script" uid="uid://c2vc25n5vjpol" path="res://game/interaction/interaction_component.gd" id="2_u6mrc"]
+[ext_resource type="Script" uid="uid://du64nbbxuswtb" path="res://game/objects/components/item_source_component.gd" id="3_twktc"]
+[ext_resource type="Script" uid="uid://m300qob3ckk1" path="res://game/items/scripts/item.gd" id="4_twktc"]
+[ext_resource type="Resource" uid="uid://lxy8l0i46u5k" path="res://game/items/timber.tres" id="5_5ug0s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1oqk"]
+size = Vector2(16, 32)
+
+[node name="TimberSupply" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g1oqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1kyg2")
+
+[node name="InteractionComponent" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = 16.0
+script = ExtResource("2_u6mrc")
+hover_message = "Timber Supplies"
+metadata/_custom_type_script = "uid://c2vc25n5vjpol"
+
+[node name="ItemSourceComponent" type="Node" parent="." node_paths=PackedStringArray("interaction_component")]
+script = ExtResource("3_twktc")
+interaction_component = NodePath("../InteractionComponent")
+items = Array[ExtResource("4_twktc")]([ExtResource("5_5ug0s")])

@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://rqlf6d88ykea"]
+
+[ext_resource type="Texture2D" uid="uid://ddqxs8e3ht42w" path="res://game/objects/workstation/oven/oven.png" id="1_18yvp"]
+[ext_resource type="Script" uid="uid://c2vc25n5vjpol" path="res://game/interaction/interaction_component.gd" id="1_dp8ip"]
+[ext_resource type="Script" uid="uid://ecy0uwneh3p8" path="res://game/objects/components/workstation_component.gd" id="2_g6jn6"]
+[ext_resource type="Resource" uid="uid://br1tkc54tv7r8" path="res://game/items/frozen_food.tres" id="3_2uvm8"]
+[ext_resource type="Resource" uid="uid://cue3e8xidp4te" path="res://game/items/cooked_food.tres" id="4_18yvp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6jn6"]
+size = Vector2(16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1h7s"]
+atlas = ExtResource("1_18yvp")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hywy"]
+atlas = ExtResource("1_18yvp")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_viqj6"]
+atlas = ExtResource("1_18yvp")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n8jh"]
+atlas = ExtResource("1_18yvp")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgcin"]
+atlas = ExtResource("1_18yvp")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uh0wk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1h7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hywy")
+}],
+"loop": true,
+"name": &"done",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_viqj6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n8jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgcin")
+}],
+"loop": true,
+"name": &"working",
+"speed": 10.0
+}]
+
+[node name="Oven" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_g6jn6")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uh0wk")
+animation = &"working"
+frame_progress = 0.245531
+
+[node name="InteractionComponent" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -5.0
+offset_right = 8.0
+offset_bottom = 16.0
+script = ExtResource("1_dp8ip")
+hover_message = "Oven"
+metadata/_custom_type_script = "uid://c2vc25n5vjpol"
+
+[node name="WorkstationComponent" type="Node" parent="." node_paths=PackedStringArray("trigger")]
+script = ExtResource("2_g6jn6")
+input = ExtResource("3_2uvm8")
+output = ExtResource("4_18yvp")
+trigger = NodePath("../InteractionComponent")

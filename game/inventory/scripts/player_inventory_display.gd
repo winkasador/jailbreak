@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	for i in range(0, inventory.items.size()):
-		slots[i].item = inventory.items[i]
+		slots[i].set_item(inventory.items[i])
 		if component.selected_index == i:
 			slots[i].is_selected = true
 		else:

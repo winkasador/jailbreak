@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bc7c4k04hbdwv"
+path="res://.godot/imported/[10] accolade.wav-1ef5eab64ff173857393ecdbdcc5612c.sample"
+
+[deps]
+
+source_file="res://sounds/[10] accolade.wav"
+dest_files=["res://.godot/imported/[10] accolade.wav-1ef5eab64ff173857393ecdbdcc5612c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
